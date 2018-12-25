@@ -687,4 +687,4 @@ read -rp "Press any key to continue" pause
 mainmenu2
 
 
-# bash <(curl https://raw.githubusercontent.com/VivaPeron/ExclusiveCoinInstall/exclusive_install.sh)
+# bash <(curl https://raw.githubusercontent.com/VivaPeron/ExclusiveCoinInstall/master/exclusive_install.sh)
