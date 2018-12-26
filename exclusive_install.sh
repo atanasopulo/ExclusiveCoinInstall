@@ -533,16 +533,15 @@ function support() {
 memfree=$(free -m |sed -n '2,2p' |awk '{ print $4 }')
 swapspace=$(free -m |tail -n1 |awk '{ print $2 }')
 getinfo=$(/usr/local/bin/exclusivecoind getinfo)
-coldlook=$(cat ~/.exclusivecoin/debug.log |grep cold)
 last20=$(tail ~/.exclusivecoin/debug.log -n20)
 mnstatus=$(/usr/local/bin/exclusivecoind masternode status)
 corecount=$(($(grep ^proc /proc/cpuinfo |tail -n1 |awk -F: '{print $2}')+1))
-currentonlineblock=0 #find a way to get current block from explorer so we can comapre.
+currentonlineblock=$(curl -s http://nodes02.exclusivecoin.pw/index.php | head -n 46 | tail -n1 | sed -n '/^$/!{s/<[^>]*>/ /g;p;}')
 synchedstatus=$(cat ~/.exclusivecoin/debug.log | grep height | awk -F= '{ print $3 }' | awk '{ print $1 }' | tail -n1)
 if [[ $synchedstatus -lt $currentonlineblock ]]; then
-		synchedstatus='$synchedstatus is current, you are synced'
+		synched='$synchedstatus is current, you are synced.'
 	else
-        synchedstatus='$synchedstatus is outdated, intervention is required.'
+        synched='$synchedstatus is outdated, current block is $urrentonlineblock. Intervention is required.'
 fi
 echo -e "${BLUE}=================================================================================${NC}"
 echo -e "                         ${FgLtBlue}Exclusive Coin ${Blink}${FgLtWhite}Support${Off}${FgLtWhite}${BgLtBlue} ${FgLtRed}Help ${Off}${FgLtWhite}${BgLtBlue}Screen"
@@ -552,8 +551,6 @@ echo -e  " Cores: $corecount        Free Memory: $memfree       Swap Space: $swa
 echo -e  ""
 echo -e  " Getinfo: $getinfo"
 echo -e  " Sync Status: $synchedstatus"
-echo -e  ""
-echo -e  " Coldlook:  $coldlook"
 echo -e  ""
 echo -e  " Last 20 lines from debug: $last20"
 echo -e  ""
