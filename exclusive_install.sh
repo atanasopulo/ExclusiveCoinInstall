@@ -1,6 +1,6 @@
 #!/bin/bash
 
-#Let's define some important and unimportanta variables:
+#Let's define some important, and uninportant cosmetic variables:
 SCRIPTVER=1.0
 CONFIG_FILE='exclusivecoin.conf'
 CONFIGFOLDER=$(eval echo $HOME/.exclusivecoin)
@@ -11,12 +11,11 @@ COIN_PATH='/usr/local/bin/'
 COIN_GIT='https://github.com/exclfork/ExclusiveCoin.git'
 COIN_BACKUP='~/ExclusiveBackup'
 COIN_TGZ=''
-COIN_BOOTSTRAP_ID='1tTsXEc17hqyYFB0M07PE_nPJLi9T4YKv'
+COIN_BOOTSTRAP_ID='1tTsXEc17hqyYFB0M07PE_nPJLi9T4YKv' #This should be changed whenever Otto releases a new bootstrap.
 COIN_BOOTSTRAP='bootstrap.dat'
-COIN_ZIP=$(echo $COIN_TGZ | awk -F'/' '{print $NF}')
 COIN_NAME='exclusivecoin'
-COIN_PORT=23230
-RPC_PORT=23231
+COIN_PORT='23230'
+RPC_PORT='23231'
 COIN_CLI_COMMAND=$(eval echo $COIN_PATH$COIN_CLI)
 COIND_COMMAND=$(eval echo $COIN_PATH$COIN_DAEMON)
 STARTCMD=$(eval echo $COIND_COMMAND -daemon -conf=$CFFULLPATH -datadir=$CONFIGFOLDER)
@@ -203,7 +202,7 @@ fi
 
 function configure_systemd() {
 
-DAEMONPID=$(pidof aegeusd)
+DAEMONPID=$(pidof exclusivecoind)
 
 if [[ -z $DAEMONPID ]]; then
     echo -e "Daemon not currently running, Good!"
@@ -451,68 +450,69 @@ fi
 }
 
 function important_information() {
- echo
- echo -e "${BLUE}================================================================================================================================${NC}"
- echo -e "${GREEN}$COIN_NAME Masternode is up and running listening on port${NC}${PURPLE}$COIN_PORT${NC}."
- echo -e "${GREEN}Configuration file is:${NC}${RED}$CFFULLPATH${NC}"
- echo -e "${GREEN}Start:${NC}${RED}systemctl start $COIN_NAME.service${NC}"
- echo -e "${GREEN}Stop:${NC}${RED}systemctl stop $COIN_NAME.service${NC}"
- echo -e "${GREEN}VPS_IP:PORT${NC}${GREEN}$NODEIP:$COIN_PORT${NC}"
+echo
+echo -e "${BLUE}================================================================================${NC}"
+echo -e "${GREEN}$COIN_NAME Masternode is up and running listening on port${NC}${PURPLE}$COIN_PORT${NC}."
+echo -e "${GREEN}Configuration file is:${NC}${RED}$CFFULLPATH${NC}"
+echo -e "${GREEN}Start:${NC}${RED}systemctl start $COIN_NAME.service${NC}"
+echo -e "${GREEN}Stop:${NC}${RED}systemctl stop $COIN_NAME.service${NC}"
+echo -e "${GREEN}VPS_IP:PORT${NC}${GREEN}$NODEIP:$COIN_PORT${NC}"
 if [[ ! $OLDKEY ]]; then
- echo -e "${GREEN}***NEW*** MASTERNODE GENKEY is:${NC}${PURPLE}$COINKEY${NC}"
+    echo -e "${GREEN}***NEW*** MASTERNODE GENKEY is:${NC}${PURPLE}$COINKEY${NC}"
 else
- echo -e "${GREEN}Copied from previous config MASTERNODE GENKEY is:${NC}${PURPLE}$COINKEY${NC}"
+    echo -e "${GREEN}Copied from previous config MASTERNODE GENKEY is:${NC}${PURPLE}$COINKEY${NC}"
 fi
- echo -e "${BLUE}================================================================================================================================"
+echo -e "${BLUE}================================================================================${NC}"
 read -rp "Press any key to continue" pause
- echo -e "Whipped up by "
+echo -e "Whipped up by "
 logo
- echo -e "for ExclusiveCoin highly based on Aegeus' project script by ${RED}Dragon${PURPLE}Lady${NC}. "
- echo -e "${BLUE}================================================================================================================================${NC}"
- echo -e "${CYAN}Ensure Node is fully SYNCED with BLOCKCHAIN.${NC}"
- echo -e "${BLUE}================================================================================================================================${NC}"
- echo -e "${GREEN}Usage Commands.${NC}"
- echo -e "${GREEN}exclusivecoind masternode status${NC}"
- echo -e "${GREEN}exclusivecoind getinfo.${NC}"
- echo -e "${BLUE}================================================================================================================================${NC}"
- echo -e "${RED}Donations always accepted gratefully.${NC}"
- echo -e "${BLUE}================================================================================================================================${NC}"
- echo -e "${WHITE}Christoph ${BLUE}EXCL: ${WHITE}EU6PW53KxLXTo72HTLQwpzw1AqPT5qFuXS${NC}"
- echo -e "${BLUE}================================================================================================================================${NC}"
+echo -e "for ExclusiveCoin highly based on Aegeus' project script by ${RED}Dragon${PURPLE}Lady${NC}. "
+echo -e "${BLUE}================================================================================${NC}"
+echo -e "${CYAN}Ensure Node is fully SYNCED with BLOCKCHAIN.${NC}"
+echo -e "${BLUE}================================================================================${NC}"
+echo -e "${GREEN}Usage Commands.${NC}"
+echo -e "${GREEN}exclusivecoind masternode status${NC}"
+echo -e "${GREEN}exclusivecoind getinfo.${NC}"
+echo -e "${BLUE}================================================================================${NC}"
+echo -e "${RED}Donations always accepted gratefully:${NC}"
+echo -e "${WHITE}Christoph ${BLUE}EXCL: ${WHITE}EU6PW53KxLXTo72HTLQwpzw1AqPT5qFuXS${NC}"
+echo -e "                   ${BLUE}BTC: ${WHITE}3JV1mTrBq8o9qVLyM9DgfMh2Vu9P21zARA${NC}"
+echo -e "${BLUE}================================================================================${NC}"
 
 }
 
 function important_information_wallet() {
 echo
-echo -e "${BLUE}================================================================================================================================${NC}"
-echo -e "${PURPLE}You now have a working CLI wallet for ${BLUE}Aegeus${WHITE}!!!"
-echo -e "${BLUE}================================================================================================================================${NC}"
+echo -e "${BLUE}=================================================================================${NC}"
+echo -e "${PURPLE}You now have a working CLI wallet for ${BLUE}Exclusive Coin${WHITE}!!!${NC}"
+echo -e "${BLUE}=================================================================================${NC}"
 echo -e "${GREEN}Configuration file is:${NC}${RED}$CFFULLPATH${NC}"
 echo -e "${GREEN}Start:${NC}${RED}systemctl start $COIN_NAME.service${NC}"
 echo -e "${GREEN}Stop:${NC}${RED}systemctl stop $COIN_NAME.service${NC}"
-echo -e "${BLUE}================================================================================================================================"
+echo -e "${BLUE}=================================================================================${NC}"
 echo -e "Whipped up by "
 logo
-echo -e "for ExclusiveCoin highly based on Aegeus' project script by ${RED}Dragon${PURPLE}Lady${NC}. "
-echo -e "${BLUE}================================================================================================================================${NC}"
+echo -e "for ExclusiveCoin highly based on Aegeus' project script by ${RED}Dragon${PURPLE}Lady${NC}."
+echo -e "${BLUE}=================================================================================${NC}"
 echo -e "${CYAN}Ensure Node is fully SYNCED with BLOCKCHAIN.${NC}"
-echo -e "${BLUE}================================================================================================================================${NC}"
+echo -e "${BLUE}=================================================================================${NC}"
 echo -e "${GREEN}Usage Commands.${NC}"
 echo -e "${GREEN}exclusivecoind getinfo${NC}"
 echo -e "${GREEN}exclusivecoind help${NC}"
-echo -e "${BLUE}================================================================================================================================${NC}"
+echo -e "${BLUE}=================================================================================${NC}"
 echo -e "${RED}Donations always accepted gratefully.${NC}"
-echo -e "${BLUE}================================================================================================================================${NC}"
+echo -e "${BLUE}=================================================================================${NC}"
 echo -e "${WHITE}Christoph ${BLUE}EXCL: ${WHITE}EU6PW53KxLXTo72HTLQwpzw1AqPT5qFuXS${NC}"
-echo -e "${BLUE}================================================================================================================================${NC}"
+echo -e "                   ${BLUE}BTC: ${WHITE}3JV1mTrBq8o9qVLyM9DgfMh2Vu9P21zARA${NC}"
+echo -e "${BLUE}=================================================================================${NC}"
 
 }
 
 function bootstrap() {
 
-echo -e "${BLUE}================================================================================================================================${NC}"
+echo -e "${BLUE}=================================================================================${NC}"
 echo -e "${RED}Bootstrapping Blockchain"
-echo -e "${BLUE}================================================================================================================================${NC}"
+echo -e "${BLUE}=================================================================================${NC}"
 mkdir $TMP_FOLDER
 systemctl stop $COIN_NAME.service
 cd $CONFIGFOLDER
@@ -537,36 +537,39 @@ coldlook=$(cat ~/.exclusivecoin/debug.log |grep cold)
 last20=$(tail ~/.exclusivecoin/debug.log -n20)
 mnstatus=$(/usr/local/bin/exclusivecoind masternode status)
 corecount=$(($(grep ^proc /proc/cpuinfo |tail -n1 |awk -F: '{print $2}')+1))
-synchedstatus=$(($COIN_CLI_COMMAND |grep 'IsBlockchainSynced' |awk '{ print $2 }'))
-
-echo -e "${BLUE}================================================================================================================================${NC}"
-echo -e "${FgLtBlue}ExclusiveCoin ${Blink}${FgLtWhite}Support${Off}${FgLtWhite}${BgLtBlue} ${FgLtRed}Help ${Off}${FgLtWhite}${BgLtBlue}Screen"
-echo -e "${BLUE}================================================================================================================================${NC}"
-echo -e  "                                                                                                          "
-echo -e  " Getinfo: $getinfo            Sync status: $synchedstatus                                                                                            "
-echo -e  "                                                                                                          "
-echo -e  " Cores: $corecount  		Free Memory: $memfree  		Swap Space: $swapspace  "
-echo -e  " "
-echo -e  " Coldlook:  $coldlook                                                                                               "
-echo -e  "                                                                                                          "
-echo -e  " Last20debug: $last20                                             "
-echo -e  "                                                                                                          "
-echo -e  " MNStatus:  $mnstatus                                                                                                        "
-
-
+currentonlineblock=0 #find a way to get current block from explorer so we can comapre.
+synchedstatus=$(cat ~/.exclusivecoin/debug.log | grep height | awk -F= '{ print $3 }' | awk '{ print $1 }' | tail -n1)
+if [[ $synchedstatus -lt $currentonlineblock ]]; then
+		synchedstatus='$synchedstatus is current, you are synced'
+	else
+        synchedstatus='$synchedstatus is outdated, intervention is required.'
+fi
+echo -e "${BLUE}=================================================================================${NC}"
+echo -e "                         ${FgLtBlue}Exclusive Coin ${Blink}${FgLtWhite}Support${Off}${FgLtWhite}${BgLtBlue} ${FgLtRed}Help ${Off}${FgLtWhite}${BgLtBlue}Screen"
+echo -e "${BLUE}=================================================================================${NC}"
+echo -e  ""
+echo -e  " Cores: $corecount        Free Memory: $memfree       Swap Space: $swapspace"
+echo -e  ""
+echo -e  " Getinfo: $getinfo"
+echo -e  " Sync Status: $synchedstatus"
+echo -e  ""
+echo -e  " Coldlook:  $coldlook"
+echo -e  ""
+echo -e  " Last 20 lines from debug: $last20"
+echo -e  ""
+echo -e  " MNStatus: $mnstatus"
 }
 
 function logo() {
 
-
-    echo -e "${RED}__   __                                         ${NC}"
-    echo -e "${RED}\ \ / /                                         ${NC}"
-    echo -e "${RED} \ v / _ __   ___  _  ____ ___ ___ ______ _ __  ${NC}"
-    echo -e "${RED}  > < | '_ \ / _ \| |/  ._|   ) _ (  __  ) '_ \ ${NC}"
-    echo -e "${RED} / ^ \| | | | |_) ) ( () ) | ( (_) ) || || | | |${NC}"
-    echo -e "${RED}/_/ \_\_| | |  __/ \_)__/   \_)___/|_||_||_| | |${NC}"
-    echo -e "${RED}          | | |                              | |${NC}"
-    echo -e "${RED}          |_|_|                              |_|${NC}"
+echo -e "${RED}__   __                                         ${NC}"
+echo -e "${RED}\ \ / /                                         ${NC}"
+echo -e "${RED} \ v / _ __   ___  _  ____ ___ ___ ______ _ __  ${NC}"
+echo -e "${RED}  > < | '_ \ / _ \| |/  ._|   ) _ (  __  ) '_ \ ${NC}"
+echo -e "${RED} / ^ \| | | | |_) ) ( () ) | ( (_) ) || || | | |${NC}"
+echo -e "${RED}/_/ \_\_| | |  __/ \_)__/   \_)___/|_||_||_| | |${NC}"
+echo -e "${RED}          | | |                              | |${NC}"
+echo -e "${RED}          |_|_|                              |_|${NC}"
 
 }
 
@@ -576,20 +579,27 @@ clear
 options=("${GREEN}1:${NC}${YELLOW} Install full Masternode${NC}" "${GREEN}2:${NC}${YELLOW} Install CLI Staking Wallet Only${NC}" "${GREEN}3:${NC}${YELLOW} Quit and get me out of here${NC}")
 echo -e "Welcome to the linux installer for ..."
 
-echo -e "${WHITE}█████████╗██╗  ██╗ ██████╗██╗     ██╗     ██╗████████╗██╗██╗    ██╗█████████╗     ██████╗ ██████╗ ██╗███╗   ██╗${NC}"
-echo -e "${WHITE}╚════════╝╚██╗██╔╝██╔════╝██║     ██║     ██║██╔═════╝██║██║    ██║╚════════╝    ██╔════╝██╔═══██╗██║████╗  ██║${NC}"
-echo -e "${WHITE}█████████╗ ╚███╔╝ ██║     ██║     ██║     ██║████████╗██║██║    ██║█████████╗    ██║     ██║   ██║██║██╔██╗ ██║${NC}"
-echo -e "${WHITE}╚════════╝ ██╔██╗ ██║     ██║     ██║     ██║╚═════██║██║╚██╗  ██╔╝╚════════╝    ██║     ██║   ██║██║██║╚██╗██║${NC}"
-echo -e "${WHITE}█████████╗██╔╝ ██╗╚██████╗███████╗╚████████╔╝████████║██║  ╚███╔═╝ █████████╗    ╚██████╗╚██████╔╝██║██║ ╚████║${NC}"
-echo -e "${WHITE}╚════════╝╚═╝  ╚═╝ ╚═════╝╚══════╝ ╚═══════╝ ╚═══════╝╚═╝   ╚══╝   ╚════════╝     ╚═════╝ ╚═════╝ ╚═╝╚═╝  ╚═══╝${NC}"
+echo -e "${WHITE}█████████╗██╗  ██╗ ██████╗██╗     ██╗     ██╗████████╗██╗██╗    ██╗█████████╗${NC}"
+echo -e "${WHITE}╚════════╝╚██╗██╔╝██╔════╝██║     ██║     ██║██╔═════╝██║██║    ██║╚════════╝${NC}"
+echo -e "${WHITE}█████████╗ ╚███╔╝ ██║     ██║     ██║     ██║████████╗██║██║    ██║█████████╗${NC}"
+echo -e "${WHITE}╚════════╝ ██╔██╗ ██║     ██║     ██║     ██║╚═════██║██║╚██╗  ██╔╝╚════════╝${NC}"
+echo -e "${WHITE}█████████╗██╔╝ ██╗╚██████╗███████╗╚████████╔╝████████║██║  ╚███╔═╝ █████████╗${NC}"
+echo -e "${WHITE}╚════════╝╚═╝  ╚═╝ ╚═════╝╚══════╝ ╚═══════╝ ╚═══════╝╚═╝   ╚══╝   ╚════════╝${NC}"
 
-echo -e "${BLUE}================================================================${NC}"
-echo -e "${WHITE}Main Menu"
-echo -e "${BLUE}===================${WHITE}Here are your options${BLUE}========================${NC}"
+echo -e "${WHITE}                   ██████╗ ██████╗ ██╗███╗   ██╗${NC}"
+echo -e "${WHITE}                  ██╔════╝██╔═══██╗██║████╗  ██║${NC}"
+echo -e "${WHITE}                  ██║     ██║   ██║██║██╔██╗ ██║${NC}"
+echo -e "${WHITE}                  ██║     ██║   ██║██║██║╚██╗██║${NC}"
+echo -e "${WHITE}                  ╚██████╗╚██████╔╝██║██║ ╚████║${NC}"
+echo -e "${WHITE}                   ╚═════╝ ╚═════╝ ╚═╝╚═╝  ╚═══╝${NC}"
+
+echo -e "${BLUE}=============================================================================${NC}"
+echo -e "${WHITE}                              Main Menu"
+echo -e "${BLUE}==========================${WHITE}Here are your options${BLUE}==============================${NC}"
 echo -e "${GREEN}1:${NC}${FgLtYellow} Install full Masternode${NC}"
 echo -e "${GREEN}2:${NC}${FgLtYellow} Install CLI Staking Wallet Only${NC}"
 echo -e "${GREEN}3:${NC}${FgLtYellow} Quit and get me out of here${NC}"
-echo -e "${BLUE}================================================================${NC}"
+echo -e "${BLUE}=============================================================================${NC}"
 }
 
 function mainmenu2 {
@@ -601,36 +611,38 @@ read -rp "Please select your choice: " opt
     case $opt in
         "1")
             echo "Lets do a masternode!";
-	doamasternode
-	    echo -e "${Underline}Masternode Setup ${Blink}Complete${Off}${FgLtBlue}$!!!"
+	        doamasternode
+	        echo -e "${Underline}Masternode Setup ${Blink}Complete${Off}${FgLtBlue}$!!!"
             read -rp "Press any key to return to main menu" pause
-	    ;;
+            ;;
         "2")
             echo "Staking Wallet only Please...";
-	justwalletplz
-	    echo -e "${Underline}Staking Wallet Setup ${Blink}Complete${Off}${FgLtBlue}!!!"
+	        justwalletplz
+            echo -e "${Underline}Staking Wallet Setup ${Blink}Complete${Off}${FgLtBlue}!!!"
             read -rp "Press any key to return to main menu" pause
             ;;
         "3")
             echo "Returning you to the shell";
-	shouldloop=false;
-	break
-	exit
+            shouldloop=false;
+            break
+            exit
             ;;
-	 "jump")
-	echo -e "Where do you want to jump to?"
-	echo -e "Valid examples are"
-	echo -e "logo"
-	echo -e "important_information"
-	echo -e "configure_systemd"
-	echo -e "preflightchecks"
-	echo -e ""
-	echo -e ""
-        read -rp "Jump to what function?: " jump;
-        $jump
-	read -rp "press any key to continue" pause;
+	    "jump")
+            echo -e "${RED}Beware this is for testing purposes only! You could damage your system!!!${NC}"
+            echo -e "Where do you want to jump to?"
+            echo -e "Valid examples are:"
+            echo -e "logo"
+            echo -e "important_information"
+            echo -e "configure_systemd"
+            echo -e "preflightchecks"
+            echo -e "support"
+            read -rp "Jump to what function?: " jump;
+            $jump
+            read -rp "press any key to continue" pause;
             ;;
-        *) echo "invalid option $REPLY";;
+        *)
+            echo -e "${RED}invalid option $REPLY${NC}"
+            ;;
     esac
 done
 }
