@@ -9,4 +9,4 @@ bash <(curl https://raw.githubusercontent.com/VivaPeron/ExclusiveCoinInstall/mas
 
 And the script does the rest.
 
-If you have any issue, please contact me at Esclusive Coin's Discord server.
+If you have any issue, please contact me at CoinScripts https://coinscripts.online or at EsclusiveCoin's Discord Server.
