@@ -141,9 +141,12 @@ fi
 
 function gdrive_download () {
 #This is until we get another repository for bootstrap file other than Otto's Google Dive.
-CONFIRM=$(wget --quiet --save-cookies /tmp/cookies.txt --keep-session-cookies --no-check-certificate "https://docs.google.com/uc?export=download&id=$1" -O- | sed -rn 's/.*confirm=([0-9A-Za-z_]+).*/\1\n/p')
-wget --load-cookies /tmp/cookies.txt "https://docs.google.com/uc?export=download&confirm=$CONFIRM&id=$1" -O $2
-rm -rf /tmp/cookies.txt
+#=$(wget --quiet --save-cookies /tmp/cookies.txt --keep-session-cookies --no-check-certificate "https://docs.google.com/uc?export=download&id=$1" -O- | sed -rn 's/.*confirm=([0-9A-Za-z_]+).*/\1\n/p')
+#wget --load-cookies /tmp/cookies.txt "https://docs.google.com/uc?export=download&confirm=$CONFIRM&id=$1" -O $2
+#rm -rf /tmp/cookies.txt
+#We finally got a better repository other than Otto's. But i'm leaving gdrive support just in case.
+wget http://62.113.207.179/exclchain/exclData1751391.zip
+unzip exclData1751391.zip peers.dat
 }
 
 function download_node() {
@@ -323,39 +326,36 @@ externalip=$EXTERNALIP
 masternodeprivkey=$COINKEY
 addnode=nodes02.exclusivecoin.pw
 addnode=nodes03.exclusivecoin.pw
+addnode=54.36.162.170
+addnode=108.61.87.241
+addnode=104.200.25.105
+addnode=2a02:c207:3001:6506::1
+addnode=94.130.237.52
+addnode=208.110.70.10
+addnode=198.58.107.178
+addnode=176.9.28.175
+addnode=172.104.18.182
+addnode=167.179.77.7
 addnode=139.180.220.10
 addnode=202.182.122.251
-addnode=193.29.56.52
-addnode=45.32.228.90
-addnode=139.180.220.10
-addnode=96.22.137.143
-addnode=45.77.65.115
-addnode=45.32.129.243
-addnode=45.76.24.63
-addnode=199.247.0.228
-addnode=95.179.180.74
-addnode=45.76.59.177
-addnode=45.76.87.250
-addnode=45.32.154.99
-addnode=104.207.150.76
-addnode=95.179.180.74
-addnode=5.43.140.248
-addnode=45.32.146.36
-addnode=108.61.177.55
-addnode=176.116.136.79
-addnode=81.132.120.149
-addnode=208.69.150.22
-addnode=45.77.94.36
-addnode=54.36.175.160
 addnode=208.69.150.12
-addnode=91.237.135.235
+addnode=45.76.131.203
+addnode=2002:5fb3:c24b::5fb3:c24b
+addnode=73.155.113.8
+addnode=140.82.33.219
 addnode=85.172.105.171
-addnode=91.237.135.247
-addnode=85.172.105.171
-addnode=91.237.135.247
-addnode=45.77.0.206
+addnode=104.207.150.76
+addnode=14.207.96.210
+addnode=45.32.228.90
+addnode=76.169.51.184
+addnode=199.247.0.228
+addnode=2001:19f0:4400:60bf:5400:1ff:fece:2905
+addnode=145.239.189.106
+addnode=95.179.144.235
 addnode=144.202.49.240
-addnode=95.179.229.199
+addnode=45.32.144.80
+addnode=185.92.221.130
+addnode=213.127.48.10
 EOF
 
 if [ -d $(eval echo $COIN_BACKUP) ]; then 
@@ -379,39 +379,36 @@ staking=1
 externalip=$EXTERNALIP
 addnode=nodes02.exclusivecoin.pw
 addnode=nodes03.exclusivecoin.pw
+addnode=54.36.162.170
+addnode=108.61.87.241
+addnode=104.200.25.105
+addnode=2a02:c207:3001:6506::1
+addnode=94.130.237.52
+addnode=208.110.70.10
+addnode=198.58.107.178
+addnode=176.9.28.175
+addnode=172.104.18.182
+addnode=167.179.77.7
 addnode=139.180.220.10
 addnode=202.182.122.251
-addnode= 193.29.56.52
-addnode=45.32.228.90
-addnode=139.180.220.10
-addnode=96.22.137.143
-addnode=45.77.65.115
-addnode=45.32.129.243
-addnode=45.76.24.63
-addnode=199.247.0.228
-addnode=95.179.180.74
-addnode=45.76.59.177
-addnode=45.76.87.250
-addnode=45.32.154.99
-addnode=104.207.150.76
-addnode=95.179.180.74
-addnode=5.43.140.248
-addnode=45.32.146.36
-addnode=108.61.177.55
-addnode=176.116.136.79
-addnode=81.132.120.149
-addnode=208.69.150.22
-addnode=45.77.94.36
-addnode=54.36.175.160
 addnode=208.69.150.12
-addnode=91.237.135.235
+addnode=45.76.131.203
+addnode=2002:5fb3:c24b::5fb3:c24b
+addnode=73.155.113.8
+addnode=140.82.33.219
 addnode=85.172.105.171
-addnode=91.237.135.247
-addnode=85.172.105.171
-addnode=91.237.135.247
-addnode=45.77.0.206
+addnode=104.207.150.76
+addnode=14.207.96.210
+addnode=45.32.228.90
+addnode=76.169.51.184
+addnode=199.247.0.228
+addnode=2001:19f0:4400:60bf:5400:1ff:fece:2905
+addnode=145.239.189.106
+addnode=95.179.144.235
 addnode=144.202.49.240
-addnode=95.179.229.199
+addnode=45.32.144.80
+addnode=185.92.221.130
+addnode=213.127.48.10
 EOF
 
 if [ -d $(eval echo $COIN_BACKUP) ]; then 
